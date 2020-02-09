@@ -27,6 +27,7 @@ for s in dataTemp:
 label = data[0]
 data.pop(0)
 
+print(data)
 posAttr = data[0][-1]
 #print(posAttr)
 #worked as expected
@@ -158,8 +159,13 @@ def partitionData(inData, attr):
         if len(dataResults[d]) == 1:
             resList, workingData = getListFromAttr(attributeIndex, d, workingData)
             dataParts[d] = resList
-            
-    dataParts["unsorted"] = workingData
+    
+        
+    for d in dataResults:
+        if d=="total":
+            continue
+        if d not in dataParts:
+            dataParts[d] = workingData
         
     return dataParts 
 
@@ -186,14 +192,14 @@ def buildTree(inData):
     branches = []
     for p in partData:
         branches.append(buildTree(partData[p]))
-        
+      
     return Node(attr, branches, partData)
 
 def printTree(node, space=""):
     if isinstance(node, Leaf):
         print(space + "Predict", node.predictions)
         return
-    print(space + str(node.attribute))
+    print(space + str(node.attribute) + "?")
     
     i = 0
     for d in node.dataPart:
@@ -204,7 +210,6 @@ def printTree(node, space=""):
 
 
 printTree(buildTree(data))
-
 
 
 
