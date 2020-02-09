@@ -1,0 +1,6 @@
+color diameter label
+green 3 apple
+yellow 3 apple
+red 1 grape
+red 1 grape
+yellow 3 lemon
